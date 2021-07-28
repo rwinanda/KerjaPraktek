@@ -16,15 +16,6 @@
     </div>
     
         
-<!--
-    <form action="<?= base_url('prov/index')?>" method="POST" class="flex mt-2">
-                
-                <input type="text" type="search" placeholder="Cari Nama Provinsi" name="keyword" class="py-2 px-4 focus:ring focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                <button class="ml-2 py-1 px-9 bg-gray-50 rounded-md" type="submit" name="submit">Search</button>
-
-    </form>    
--->
-        
     <!--    fitur searching-->
     <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
