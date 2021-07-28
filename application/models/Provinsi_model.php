@@ -61,9 +61,9 @@
                 FROM
                     provinsi
                 WHERE
-                    nama_provinsi LIKE '%$keyword%'
+                    nama_provinsi ILIKE '%$keyword%'
                 ORDER BY
-                    nama_provinsi DESC"
+                    nama_provinsi ASC"
             )->result_array();
         }
         
@@ -122,4 +122,4 @@
          {
             return $this->db->get('provinsi')->num_rows(); 
          }
-    }
+}

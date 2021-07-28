@@ -127,4 +127,40 @@ class prov extends CI_Controller
 //            $this->load->view('provinsi/templates/footer');
 //    }
 
+    public function cari() {
+        $query      = $_POST['query'];
+        $output     = "";
+        $provinsi   = $this->Provinsi_model->getProvinsi($query);
+
+        if($provinsi) {
+            foreach ($provinsi as $prov) {
+                $output.= '
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <center>
+                            
+                            <img width="200" height="280" src="'.base_url("upload/provinsi/".$prov["gambar"]).'"/>
+                            </center>
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">'.$prov['nama_provinsi'].'</div>
+                            
+                            <a role="button" href="'.base_url("daerah/index/".$prov['id_provinsi']).'" class="btn btn-primary">Lihat &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+                ';
+    
+            }
+        }
+
+        // return $output;
+        return $this->output->set_content_type('application/json')
+                ->set_output(json_encode($output));
+    }
+
 }
