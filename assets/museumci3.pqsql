@@ -1,0 +1,902 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.6
+-- Dumped by pg_dump version 12.6
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: admin; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.admin (
+    id_admin integer NOT NULL,
+    id_role integer NOT NULL,
+    username character varying(256) NOT NULL,
+    password character varying(256) NOT NULL,
+    id_museum integer
+);
+
+
+ALTER TABLE public.admin OWNER TO postgres;
+
+--
+-- Name: admin_id_admin_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.admin_id_admin_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.admin_id_admin_seq OWNER TO postgres;
+
+--
+-- Name: admin_id_admin_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.admin_id_admin_seq OWNED BY public.admin.id_admin;
+
+
+--
+-- Name: admin_id_museum_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.admin_id_museum_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.admin_id_museum_seq OWNER TO postgres;
+
+--
+-- Name: admin_id_museum_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.admin_id_museum_seq OWNED BY public.admin.id_museum;
+
+
+--
+-- Name: admin_id_role_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.admin_id_role_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.admin_id_role_seq OWNER TO postgres;
+
+--
+-- Name: admin_id_role_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.admin_id_role_seq OWNED BY public.admin.id_role;
+
+
+--
+-- Name: daerah; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.daerah (
+    id_daerah integer NOT NULL,
+    nama_daerah character varying(256) NOT NULL,
+    id_provinsi integer NOT NULL,
+    gambardaerah character varying(256)
+);
+
+
+ALTER TABLE public.daerah OWNER TO postgres;
+
+--
+-- Name: daerah_id_daerah_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.daerah_id_daerah_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.daerah_id_daerah_seq OWNER TO postgres;
+
+--
+-- Name: daerah_id_daerah_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.daerah_id_daerah_seq OWNED BY public.daerah.id_daerah;
+
+
+--
+-- Name: daerah_id_provinsi_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.daerah_id_provinsi_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.daerah_id_provinsi_seq OWNER TO postgres;
+
+--
+-- Name: daerah_id_provinsi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.daerah_id_provinsi_seq OWNED BY public.daerah.id_provinsi;
+
+
+--
+-- Name: detail_deskripsi; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detail_deskripsi (
+    id_deskripsi integer NOT NULL,
+    deskripsi character varying(128) NOT NULL,
+    fungsi character varying(128) NOT NULL,
+    referensi character varying(128) NOT NULL,
+    catatan character varying(128) NOT NULL,
+    sejarh_singkat character varying(128) NOT NULL
+);
+
+
+ALTER TABLE public.detail_deskripsi OWNER TO postgres;
+
+--
+-- Name: dokumentasi; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.dokumentasi (
+    no_dokum integer NOT NULL,
+    foto character varying(128) NOT NULL,
+    dokum_data character varying(128) NOT NULL,
+    dokum_foto character varying(128) NOT NULL,
+    narasumber character varying(128) NOT NULL,
+    lembaga_dokum character varying(128) NOT NULL
+);
+
+
+ALTER TABLE public.dokumentasi OWNER TO postgres;
+
+--
+-- Name: koleksi; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.koleksi (
+    id_koleksi integer NOT NULL,
+    nama_koleksi character varying(256) NOT NULL,
+    id_museum integer NOT NULL,
+    gambarkoleksi character varying(256),
+    kel_koleksi character varying(256),
+    lok_temuan character varying(256),
+    panjang character varying(256),
+    lebar character varying(256),
+    tinggi character varying(256),
+    tebal character varying(256),
+    diameter character varying(256),
+    bahan character varying(256),
+    thn_buat character varying(256),
+    fungsi character varying(256),
+    deskripsi character varying(5000),
+    sejarah character varying(5000),
+    tanggal date,
+    dokum_foto character varying(256),
+    dokum_data character varying(256),
+    narasumber character varying(256),
+    no_dokum character varying(256),
+    lok_simpan character varying(256),
+    referensi character varying(256),
+    lembaga character varying(256),
+    catatan character varying(256)
+);
+
+
+ALTER TABLE public.koleksi OWNER TO postgres;
+
+--
+-- Name: koleksi_id_koleksi_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.koleksi_id_koleksi_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.koleksi_id_koleksi_seq OWNER TO postgres;
+
+--
+-- Name: koleksi_id_koleksi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.koleksi_id_koleksi_seq OWNED BY public.koleksi.id_koleksi;
+
+
+--
+-- Name: koleksi_id_museum_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.koleksi_id_museum_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.koleksi_id_museum_seq OWNER TO postgres;
+
+--
+-- Name: koleksi_id_museum_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.koleksi_id_museum_seq OWNED BY public.koleksi.id_museum;
+
+
+--
+-- Name: museum; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.museum (
+    id_museum integer NOT NULL,
+    nama_museum character varying(256) NOT NULL,
+    id_daerah integer NOT NULL,
+    id_admin integer,
+    gambarmuseum character varying(256)
+);
+
+
+ALTER TABLE public.museum OWNER TO postgres;
+
+--
+-- Name: museum_id_daerah_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.museum_id_daerah_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.museum_id_daerah_seq OWNER TO postgres;
+
+--
+-- Name: museum_id_daerah_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.museum_id_daerah_seq OWNED BY public.museum.id_daerah;
+
+
+--
+-- Name: museum_id_museum_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.museum_id_museum_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.museum_id_museum_seq OWNER TO postgres;
+
+--
+-- Name: museum_id_museum_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.museum_id_museum_seq OWNED BY public.museum.id_museum;
+
+
+--
+-- Name: produk; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.produk (
+    id_produk integer NOT NULL,
+    nama_produk character varying(256),
+    id_koleksi integer NOT NULL,
+    gambarproduk character varying(256),
+    kelompok_koleksi character varying(256),
+    lokasi_penemuan character varying(256),
+    panjang character varying(256),
+    lebar character varying(256),
+    tinggi character varying(256),
+    tebal character varying(256),
+    diameter character varying(256),
+    bahan character varying(256),
+    tahun_pembuatan character varying(256),
+    fungsi character varying(256),
+    deskripsi character varying(256),
+    sejarah character(256),
+    tanggal date,
+    dokum_foto character varying(256),
+    dokum_data character varying(256),
+    narasumber character varying(256),
+    no_dokum character varying(256),
+    lokasi_penyimpanan character varying(256),
+    referensi character varying(256),
+    lembaga character varying(256),
+    catatan character varying(256)
+);
+
+
+ALTER TABLE public.produk OWNER TO postgres;
+
+--
+-- Name: produk_id_koleksi_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.produk_id_koleksi_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.produk_id_koleksi_seq OWNER TO postgres;
+
+--
+-- Name: produk_id_koleksi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.produk_id_koleksi_seq OWNED BY public.produk.id_koleksi;
+
+
+--
+-- Name: produk_id_produk_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.produk_id_produk_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.produk_id_produk_seq OWNER TO postgres;
+
+--
+-- Name: produk_id_produk_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.produk_id_produk_seq OWNED BY public.produk.id_produk;
+
+
+--
+-- Name: provinsi; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.provinsi (
+    id_provinsi integer NOT NULL,
+    nama_provinsi character varying(256) NOT NULL,
+    gambar character varying(256)
+);
+
+
+ALTER TABLE public.provinsi OWNER TO postgres;
+
+--
+-- Name: provinsi_id_provinsi_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.provinsi_id_provinsi_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.provinsi_id_provinsi_seq OWNER TO postgres;
+
+--
+-- Name: provinsi_id_provinsi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.provinsi_id_provinsi_seq OWNED BY public.provinsi.id_provinsi;
+
+
+--
+-- Name: role; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.role (
+    id_role integer NOT NULL,
+    name character varying NOT NULL
+);
+
+
+ALTER TABLE public.role OWNER TO postgres;
+
+--
+-- Name: role_id_role_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.role_id_role_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.role_id_role_seq OWNER TO postgres;
+
+--
+-- Name: role_id_role_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.role_id_role_seq OWNED BY public.role.id_role;
+
+
+--
+-- Name: admin id_admin; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin ALTER COLUMN id_admin SET DEFAULT nextval('public.admin_id_admin_seq'::regclass);
+
+
+--
+-- Name: admin id_role; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin ALTER COLUMN id_role SET DEFAULT nextval('public.admin_id_role_seq'::regclass);
+
+
+--
+-- Name: admin id_museum; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin ALTER COLUMN id_museum SET DEFAULT nextval('public.admin_id_museum_seq'::regclass);
+
+
+--
+-- Name: daerah id_daerah; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.daerah ALTER COLUMN id_daerah SET DEFAULT nextval('public.daerah_id_daerah_seq'::regclass);
+
+
+--
+-- Name: daerah id_provinsi; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.daerah ALTER COLUMN id_provinsi SET DEFAULT nextval('public.daerah_id_provinsi_seq'::regclass);
+
+
+--
+-- Name: koleksi id_koleksi; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.koleksi ALTER COLUMN id_koleksi SET DEFAULT nextval('public.koleksi_id_koleksi_seq'::regclass);
+
+
+--
+-- Name: koleksi id_museum; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.koleksi ALTER COLUMN id_museum SET DEFAULT nextval('public.koleksi_id_museum_seq'::regclass);
+
+
+--
+-- Name: museum id_museum; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.museum ALTER COLUMN id_museum SET DEFAULT nextval('public.museum_id_museum_seq'::regclass);
+
+
+--
+-- Name: museum id_daerah; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.museum ALTER COLUMN id_daerah SET DEFAULT nextval('public.museum_id_daerah_seq'::regclass);
+
+
+--
+-- Name: produk id_produk; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produk ALTER COLUMN id_produk SET DEFAULT nextval('public.produk_id_produk_seq'::regclass);
+
+
+--
+-- Name: produk id_koleksi; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produk ALTER COLUMN id_koleksi SET DEFAULT nextval('public.produk_id_koleksi_seq'::regclass);
+
+
+--
+-- Name: provinsi id_provinsi; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provinsi ALTER COLUMN id_provinsi SET DEFAULT nextval('public.provinsi_id_provinsi_seq'::regclass);
+
+
+--
+-- Name: role id_role; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role ALTER COLUMN id_role SET DEFAULT nextval('public.role_id_role_seq'::regclass);
+
+
+--
+-- Data for Name: admin; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.admin (id_admin, id_role, username, password, id_museum) FROM stdin;
+5	1	padma	padma	\N
+6	2	kartini	kartini	6
+7	2	vredeburg	vredeburg	10
+\.
+
+
+--
+-- Data for Name: daerah; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.daerah (id_daerah, nama_daerah, id_provinsi, gambardaerah) FROM stdin;
+13	Jepara	3	\N
+22	Klaten	3	\N
+31	Solo	11	Logo_Kota_Surakarta_(Solo).png
+33	Bantul	16	jateng2.jpg
+23	Bandung 	3	logo-bandung.png
+32	Solo	3	Logo_Kota_Surakarta_(Solo).png
+\.
+
+
+--
+-- Data for Name: detail_deskripsi; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.detail_deskripsi (id_deskripsi, deskripsi, fungsi, referensi, catatan, sejarh_singkat) FROM stdin;
+\.
+
+
+--
+-- Data for Name: dokumentasi; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.dokumentasi (no_dokum, foto, dokum_data, dokum_foto, narasumber, lembaga_dokum) FROM stdin;
+\.
+
+
+--
+-- Data for Name: koleksi; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.koleksi (id_koleksi, nama_koleksi, id_museum, gambarkoleksi, kel_koleksi, lok_temuan, panjang, lebar, tinggi, tebal, diameter, bahan, thn_buat, fungsi, deskripsi, sejarah, tanggal, dokum_foto, dokum_data, narasumber, no_dokum, lok_simpan, referensi, lembaga, catatan) FROM stdin;
+4	Batu Ukir	6	batu_ukir.png	Arkeologika	Masjid Mantingan	\N	\N	\N	\N	\N	Batu Putih	-	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5	Manusia	10	arca_agastya.png	Man	adas	\N	\N	\N	\N	\N	asdasdas	1231	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+9	Arya Agastya	6	arca_agastya.png	Arkeologika	Bandengan	\N	\N	\N	\N	\N	Batu andesit	-	\N	\N	\N	2021-07-13	Agra	Fajar	\N	\N	\N	\N	\N	\N
+10	Bel Delman	6	bel_delman.png	Arkeologika	-	-	-	-	-	-	kuningan	-	Bel	Berbentuk bulat menyerupai bola dengan tuas pada bagian penutupnya. Terdapat tulisan  DIAMOND BELL.CO NEW YORK U.S.A. dan  EAGLE AUTO BELL di bagian atas tulisan tersebut merupakan nama perusahaan pembuat bell yang berasal dari Amerika Serikat. Tuas besi yang berfungsi sebagai pemantik suara caranya dengan diinjak/ditekan kemudian dilepas, jenis bell seperti ini banyak digunakan pada tahun 1906. Terdapat korosi dan oksidasi pada beberapa bagian.	-	2020-09-21	Agra	Hatmadi	-	65 - 66 (sony)	Jepara Kuno (ruang 2)	-	CV. Padma	-
+\.
+
+
+--
+-- Data for Name: museum; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.museum (id_museum, nama_museum, id_daerah, id_admin, gambarmuseum) FROM stdin;
+11	Vredeburg	32	\N	benteng-vredeburg-ok.jpg
+6	Kartini	13	2	museum_gajah.jpg
+10	vredeburgg	13	\N	benteng-vredeburg-ok.jpg
+\.
+
+
+--
+-- Data for Name: produk; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.produk (id_produk, nama_produk, id_koleksi, gambarproduk, kelompok_koleksi, lokasi_penemuan, panjang, lebar, tinggi, tebal, diameter, bahan, tahun_pembuatan, fungsi, deskripsi, sejarah, tanggal, dokum_foto, dokum_data, narasumber, no_dokum, lokasi_penyimpanan, referensi, lembaga, catatan) FROM stdin;
+\.
+
+
+--
+-- Data for Name: provinsi; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.provinsi (id_provinsi, nama_provinsi, gambar) FROM stdin;
+13	Jawa Timur	logo_jatim.png
+11	Jawa Barat	jabar.png
+16	DI Yogyakarta	Yogakarta.png
+17	DKI Jakarta	logo_jakarta.png
+18	Banten 	default.jpg
+3	Jawa Tengah	jateng.png
+\.
+
+
+--
+-- Data for Name: role; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.role (id_role, name) FROM stdin;
+1	pusat
+2	museum
+\.
+
+
+--
+-- Name: admin_id_admin_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.admin_id_admin_seq', 7, true);
+
+
+--
+-- Name: admin_id_museum_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.admin_id_museum_seq', 3, true);
+
+
+--
+-- Name: admin_id_role_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.admin_id_role_seq', 1, false);
+
+
+--
+-- Name: daerah_id_daerah_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.daerah_id_daerah_seq', 33, true);
+
+
+--
+-- Name: daerah_id_provinsi_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.daerah_id_provinsi_seq', 7, true);
+
+
+--
+-- Name: koleksi_id_koleksi_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.koleksi_id_koleksi_seq', 10, true);
+
+
+--
+-- Name: koleksi_id_museum_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.koleksi_id_museum_seq', 1, true);
+
+
+--
+-- Name: museum_id_daerah_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.museum_id_daerah_seq', 1, false);
+
+
+--
+-- Name: museum_id_museum_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.museum_id_museum_seq', 11, true);
+
+
+--
+-- Name: produk_id_koleksi_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.produk_id_koleksi_seq', 1, false);
+
+
+--
+-- Name: produk_id_produk_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.produk_id_produk_seq', 1, false);
+
+
+--
+-- Name: provinsi_id_provinsi_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.provinsi_id_provinsi_seq', 18, true);
+
+
+--
+-- Name: role_id_role_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.role_id_role_seq', 1, false);
+
+
+--
+-- Name: admin admin_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin
+    ADD CONSTRAINT admin_pkey PRIMARY KEY (id_admin);
+
+
+--
+-- Name: daerah daerah_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.daerah
+    ADD CONSTRAINT daerah_pkey PRIMARY KEY (id_daerah);
+
+
+--
+-- Name: detail_deskripsi detail_deskripsi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_deskripsi
+    ADD CONSTRAINT detail_deskripsi_pkey PRIMARY KEY (id_deskripsi);
+
+
+--
+-- Name: dokumentasi dokumentasi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dokumentasi
+    ADD CONSTRAINT dokumentasi_pkey PRIMARY KEY (no_dokum);
+
+
+--
+-- Name: koleksi koleksi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.koleksi
+    ADD CONSTRAINT koleksi_pkey PRIMARY KEY (id_koleksi);
+
+
+--
+-- Name: museum museum_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.museum
+    ADD CONSTRAINT museum_pkey PRIMARY KEY (id_museum);
+
+
+--
+-- Name: produk produk_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produk
+    ADD CONSTRAINT produk_pkey PRIMARY KEY (id_produk);
+
+
+--
+-- Name: provinsi provinsi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provinsi
+    ADD CONSTRAINT provinsi_pkey PRIMARY KEY (id_provinsi);
+
+
+--
+-- Name: role role_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role
+    ADD CONSTRAINT role_pkey PRIMARY KEY (id_role);
+
+
+--
+-- Name: fk_admin_museum; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fk_admin_museum ON public.admin USING btree (id_museum);
+
+
+--
+-- Name: fk_produk_koleksi; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fk_produk_koleksi ON public.produk USING btree (id_koleksi);
+
+
+--
+-- Name: fki_fk_koleksi_museum; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_fk_koleksi_museum ON public.koleksi USING btree (id_museum);
+
+
+--
+-- Name: admin admin_id_museum_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin
+    ADD CONSTRAINT admin_id_museum_fkey FOREIGN KEY (id_museum) REFERENCES public.museum(id_museum) ON DELETE SET NULL;
+
+
+--
+-- Name: admin fk_admin_daftar; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin
+    ADD CONSTRAINT fk_admin_daftar FOREIGN KEY (id_role) REFERENCES public.role(id_role);
+
+
+--
+-- Name: daerah fk_daerah_provinsi; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.daerah
+    ADD CONSTRAINT fk_daerah_provinsi FOREIGN KEY (id_provinsi) REFERENCES public.provinsi(id_provinsi);
+
+
+--
+-- Name: museum fk_museum_daerah; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.museum
+    ADD CONSTRAINT fk_museum_daerah FOREIGN KEY (id_daerah) REFERENCES public.daerah(id_daerah);
+
+
+--
+-- Name: koleksi koleksi_id_museum_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.koleksi
+    ADD CONSTRAINT koleksi_id_museum_fkey FOREIGN KEY (id_museum) REFERENCES public.museum(id_museum) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: produk produk_id_koleksi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produk
+    ADD CONSTRAINT produk_id_koleksi_fkey FOREIGN KEY (id_koleksi) REFERENCES public.koleksi(id_koleksi);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
